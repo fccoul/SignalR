@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "Chat";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+ 
+<hgroup>
+    <h2>@ViewBag.Title</h2>
+    <hr />
+    <h2>@ViewBag.Message</h2>
+</hgroup>
+
+<div class="container">
+      <input type="text" id="TxtMessage" />
+      <input type="button" id="btnSend" value="send" />
+      <input type="hidden" id="UserName" />
+
+    <ul id="Chats"></ul>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+
+    <script>
+        $(function () {
+            //proxy correspondant au hub notifier degini coté server
+            var chat = $.connection.chatHub;
+            chat.client.newmessage = function (CI_Name, CI_Message) {
+                $("#Chats").append('<li><strong>' + htmlencode(CI_Name) + '</strong>:' + htmlencode(CI_Message) + '</li>');
+            };
+
+            $("#UserName").val(prompt('Please Enter Your Name'));
+            $("#TxtMessage").focus();
+
+            $.connection.hub.start().done(function () {
+                console.log("Connected to Signalr Server");
+                $("#btnSend").click(function () {
+                    chat.server.letsChat($("#UserName").val(), $("#TxtMessage").val());
+                    $("TxtMessage").val('').focus();
+                });
+            })
+            .fail(function () {
+                console.log("failed in connecting to the signalr server");
+            });
+
+        });
+
+        function htmlencode(value) {
+            var encodevalue = $("<div/>").text(value).html();
+            return encodevalue;
+        }
+    </script>
+}
