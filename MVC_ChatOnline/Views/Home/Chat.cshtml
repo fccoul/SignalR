@@ -34,6 +34,8 @@
             $("#UserName").val(prompt('Please Enter Your Name'));
             $("#TxtMessage").focus();
 
+            //$.connection.hub.logging = true;
+
             $.connection.hub.start().done(function () {
                 console.log("Connected to Signalr Server");
                 $("#btnSend").click(function () {

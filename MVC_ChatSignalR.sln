@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC_ChatOnline", "MVC_ChatOnline\MVC_ChatOnline.csproj", "{9A01EEE4-E1A8-401D-8F92-8915161AB1D0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mvc_SignalR_SQLDependency", "Mvc_SignalR_SQLDependency\Mvc_SignalR_SQLDependency.csproj", "{1C9FFCCE-1B1E-4677-AC95-E9D67BB65003}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp_SqlDependendy", "ConsoleApp_SqlDependendy\ConsoleApp_SqlDependendy.csproj", "{0A0E080E-0D14-48E1-B8D5-9263F1A2785F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +17,14 @@ Global
 		{9A01EEE4-E1A8-401D-8F92-8915161AB1D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A01EEE4-E1A8-401D-8F92-8915161AB1D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A01EEE4-E1A8-401D-8F92-8915161AB1D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C9FFCCE-1B1E-4677-AC95-E9D67BB65003}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C9FFCCE-1B1E-4677-AC95-E9D67BB65003}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C9FFCCE-1B1E-4677-AC95-E9D67BB65003}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C9FFCCE-1B1E-4677-AC95-E9D67BB65003}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A0E080E-0D14-48E1-B8D5-9263F1A2785F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A0E080E-0D14-48E1-B8D5-9263F1A2785F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A0E080E-0D14-48E1-B8D5-9263F1A2785F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A0E080E-0D14-48E1-B8D5-9263F1A2785F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

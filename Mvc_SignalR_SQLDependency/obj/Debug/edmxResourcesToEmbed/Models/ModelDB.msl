@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SQLDependencyModelStoreContainer" CdmEntityContainer="SQLDependencyEntities">
+    <EntitySetMapping Name="NotificationLists">
+      <EntityTypeMapping TypeName="SQLDependencyModel.NotificationList">
+        <MappingFragment StoreEntitySet="NotificationList">
+          <ScalarProperty Name="UserConnectionID" ColumnName="UserConnectionID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsersChats">
+      <EntityTypeMapping TypeName="SQLDependencyModel.UsersChat">
+        <MappingFragment StoreEntitySet="UsersChat">
+          <ScalarProperty Name="loginName" ColumnName="loginName" />
+          <ScalarProperty Name="IDConnection" ColumnName="IDConnection" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

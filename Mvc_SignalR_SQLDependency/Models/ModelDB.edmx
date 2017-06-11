@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SQLDependencyModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="SQLDependencyModelStoreContainer">
+          <EntitySet Name="NotificationList" EntityType="SQLDependencyModel.Store.NotificationList" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UsersChat" EntityType="SQLDependencyModel.Store.UsersChat" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="NotificationList">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UserID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="UserConnectionID" Type="uniqueidentifier" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UsersChat">
+          <Key>
+            <PropertyRef Name="IDConnection" />
+          </Key>
+          <Property Name="IDConnection" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="loginName" Type="varchar" MaxLength="50" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SQLDependencyModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SQLDependencyEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="NotificationLists" EntityType="SQLDependencyModel.NotificationList" />
+          <EntitySet Name="UsersChats" EntityType="SQLDependencyModel.UsersChat" />
+        </EntityContainer>
+        <EntityType Name="NotificationList">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="UserID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Type="Guid" Name="UserConnectionID" />
+        </EntityType>
+        <EntityType Name="UsersChat">
+          <Key>
+            <PropertyRef Name="IDConnection" />
+          </Key>
+          <Property Type="Guid" Name="IDConnection" Nullable="false" />
+          <Property Type="String" Name="loginName" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SQLDependencyModelStoreContainer" CdmEntityContainer="SQLDependencyEntities">
+          <EntitySetMapping Name="NotificationLists">
+            <EntityTypeMapping TypeName="SQLDependencyModel.NotificationList">
+              <MappingFragment StoreEntitySet="NotificationList">
+                <ScalarProperty Name="UserConnectionID" ColumnName="UserConnectionID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsersChats">
+            <EntityTypeMapping TypeName="SQLDependencyModel.UsersChat">
+              <MappingFragment StoreEntitySet="UsersChat">
+                <ScalarProperty Name="loginName" ColumnName="loginName" />
+                <ScalarProperty Name="IDConnection" ColumnName="IDConnection" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

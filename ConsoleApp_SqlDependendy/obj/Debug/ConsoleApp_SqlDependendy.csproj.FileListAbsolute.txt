@@ -1,0 +1,6 @@
+c:\users\fhcoulibaly\documents\visual studio 2012\Projects\MVC_ChatSignalR\ConsoleApp_SqlDependendy\bin\Debug\ConsoleApp_SqlDependendy.exe.config
+c:\users\fhcoulibaly\documents\visual studio 2012\Projects\MVC_ChatSignalR\ConsoleApp_SqlDependendy\bin\Debug\ConsoleApp_SqlDependendy.exe
+c:\users\fhcoulibaly\documents\visual studio 2012\Projects\MVC_ChatSignalR\ConsoleApp_SqlDependendy\bin\Debug\ConsoleApp_SqlDependendy.pdb
+c:\users\fhcoulibaly\documents\visual studio 2012\Projects\MVC_ChatSignalR\ConsoleApp_SqlDependendy\obj\Debug\ConsoleApp_SqlDependendy.csprojResolveAssemblyReference.cache
+c:\users\fhcoulibaly\documents\visual studio 2012\Projects\MVC_ChatSignalR\ConsoleApp_SqlDependendy\obj\Debug\ConsoleApp_SqlDependendy.exe
+c:\users\fhcoulibaly\documents\visual studio 2012\Projects\MVC_ChatSignalR\ConsoleApp_SqlDependendy\obj\Debug\ConsoleApp_SqlDependendy.pdb

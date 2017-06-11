@@ -1,0 +1,168 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts{
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+
+    <script>
+        var userConnected;
+        $(function () {
+
+            // Reference the auto-generated proxy for the hub.  
+            var notification = $.connection.notificationHub;
+            /////////////////
+            userConnected = prompt('Please Enter Your Name');
+            $("#SpanUser").append(userConnected);
+            $.connection.hub.qs = { "myUserName": userConnected };//----pass value en parametre....
+            $("#userName").val(userConnected);
+            //////////////////
+
+            // Client side method for receiving the list of notifications on the connected event from the server
+            
+            notification.client.refreshNotification = function (data) {
+                //alert("val-------->" + data);
+                var cpt = 0;
+                $("#notificationTab").empty();
+                $("#cntNotifications").text(data.length);
+                for (var i = 0; i < data.length; i++) {
+                    cpt++;
+                    $("#notificationTab").append("<tr><td>" + cpt + "</td><td>" + data[i].ID + "</td> <td>" + data[i].Text + "</td> <td>" + data[i].CreatedDate + "</td><td>" + data[i].UserID + "</td></tr>");
+
+                }
+            }
+            
+
+            //Client side method which will be invoked from the Global.asax.cs file. 
+            notification.client.addLatestNotification = function (data) {
+               
+              // alert("val-------->" + data);
+
+                $("#cntNotifications").text($("#cntNotifications").text()+1);
+                var cpt = "XX";
+                $("#notificationTab").append("<tr><td>" + cpt + "</td><td>" + data.ID + "</td> <td>" + data.Text + "</td> <td>" + data.CreatedDate + "</td><td>" + data.UserID + "</td></tr>");
+                
+            }
+
+
+            $.connection.hub.start().done(function () {
+
+                console.log("Connected to Signalr Server !");
+
+                    
+
+                $("#btnSend").click(function () {
+                    if ($("#text").val() != '' && $("#userName").val()!='')
+                    {
+                        notification.server.sendNotification($("#text").val(), $("#userName").val());
+                        //////
+                        $("#text").val('');
+                        $("#userName").val('');
+                    }
+                      else
+                    {
+                        alert("veuillez renseigner les champ Notification et sendTo");
+                    }
+
+                    });
+
+                })
+                .fail(function () {
+                    console.log("failed in connecting to the signalr server");
+                });
+            
+        });
+
+        function Init() {
+           // alert(userConnected);
+            // Reference the auto-generated proxy for the hub.  
+            var notification = $.connection.notificationHub;
+            userConnected = prompt('Please Enter Your Name');
+            $("#SpanUser").append(userConnected);
+            $.connection.hub.qs = {"myUserName":userConnected};
+            $.connection.hub.start().done(function () {
+                notification.server.setUserConnected(userConnected);
+            });
+
+            // Client side method for receiving the list of notifications on the connected event from the server
+            notification.client.refreshNotification = function (data) {
+               // alert("val-------->" + data);
+
+                $("#notificationTab").empty();
+                $("#cntNotifications").text(data.length);
+                var cpt = 0;
+                for (var i = 0; i < data.length; i++) {
+                    cpt++;
+                    $("#notificationTab").append("<tr><td>" + cpt + "</td><td>" + data[i].ID + "</td> <td>" + data[i].Text + "</td> <td>" + data[i].CreatedDate + "</td><td>" + data[i].UserID + "</td></tr>");
+                    
+                }
+            }
+        }
+
+        $(document).ready(function () {
+            //userConnected = $("#UserName").val(prompt('Please Enter Your Name'));
+            //alert(userConnected);
+            //Init();
+        });
+</script>
+}
+
+<h2>Index</h2>
+<div id="DivUser">
+   <p id="SpanUser"> Bienvenue , </p>
+</div>
+<input type="hidden" id="UserName" />
+
+<div style="width: 70%; padding: 20px">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+
+    <! – To show notification count-->
+            <div style="float: left" class="panel-title">Notifications</div>
+            <div style="float: right" class="badge" id="cntNotifications"></div>
+            <div style="clear: both"></div>
+
+
+        </div>
+        <div class="panel-body">
+      <! – To show All the notifications-->
+            <table class="table table-striped table-hover ">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Code</th>
+                        <th>Text</th>
+                        <th>Created Date</th>
+                        <th>For User</th>
+                    </tr>
+                </thead>
+
+                <tbody id="notificationTab">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <! – Add panel notification to send notification, Make sure that user enters the user id of the domain they are logged into --> 
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Create Notifications</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label class="control-label" for="focusedInput">Notification Text</label>
+                <input class="form-control" id="text" type="text" value="">
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="focusedInput">Send To</label>
+                <input class="form-control" id="userName" type="text" value="">
+            </div>
+            <a id="btnSend" style="cursor: pointer" class="btn btn-primary">Send Notification</a>
+        </div>
+    </div>
+</div>
+
